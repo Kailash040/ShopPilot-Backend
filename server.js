@@ -11,16 +11,13 @@ connectDB();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 
-// Basic routes
 app.get('/', (req, res) => {
   res.json({ 
     message: 'SaaS Dashboard Backend API is running!',
