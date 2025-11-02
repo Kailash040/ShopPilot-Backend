@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
+app.use('/api/customers', require('./routes/customerRoutes'));
 
 app.get('/', (req, res) => {
   res.json({ 
@@ -36,6 +37,15 @@ app.get('/', (req, res) => {
         updateOrderAction: 'PATCH /api/orders/:id/action',
         updateOrderStatus: 'PATCH /api/orders/:id/status',
         deleteOrder: 'DELETE /api/orders/:id'
+      },
+      customers: {
+        getCustomerSummary: 'GET /api/customers/summary',
+        getAllCustomers: 'GET /api/customers',
+        getCustomerById: 'GET /api/customers/:id',
+        createCustomer: 'POST /api/customers',
+        updateCustomer: 'PUT /api/customers/:id',
+        updateCustomerStatus: 'PATCH /api/customers/:id/status',
+        deleteCustomer: 'DELETE /api/customers/:id'
       }
     }
   });
