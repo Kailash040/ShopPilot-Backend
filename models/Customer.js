@@ -58,5 +58,29 @@ customerSchema.index({ customerName: 1 });
 customerSchema.index({ email: 1 });
 customerSchema.index({ status: 1 });
 
-module.exports = mongoose.model('Customer', customerSchema);
+/* Example of a valid Customer object:
+{
+  customerName: "John Doe",
+  email: "john.doe@example.com",
+  phone: "+1234567890",
+  ordersCount: 5,
+  orderTotal: 1250.50,
+  customerSince: new Date("2024-01-15"),
+  status: "active",
+  abandonedCarts: 2
+}
 
+Minimal valid Customer object (required fields only):
+{
+  customerName: "Jane Smith",
+  email: "jane.smith@example.com",
+  phone: "9876543210",
+  customerSince: new Date(),
+  status: "active"
+}
+
+Note: ordersCount, orderTotal, and abandonedCarts have default values of 0,
+and customerSince defaults to Date.now() if not provided.
+*/
+
+module.exports = mongoose.model('Customer', customerSchema);

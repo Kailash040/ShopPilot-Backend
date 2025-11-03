@@ -83,4 +83,45 @@ orderSchema.pre('save', function(next) {
   next();
 });
 
+/* Example of a valid Order object (complete):
+{
+  customerName: "John Doe",
+  orderDate: new Date("2024-01-15"),
+  orderType: "online",
+  trackingId: "ORD-ABC123-XYZ",
+  orderTotal: 1250.50,
+  action: "processing",
+  status: "active",
+  description: "Customer order with express shipping",
+  customerEmail: "john.doe@example.com",
+  customerPhone: "+1234567890",
+  shippingAddress: {
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zipCode: "10001",
+    country: "USA"
+  }
+}
+
+Minimal valid Order object (required fields only):
+{
+  customerName: "Jane Smith",
+  orderTotal: 250.00,
+  trackingId: "ORD-123456"
+}
+
+Note: 
+- orderDate defaults to Date.now() if not provided
+- orderType defaults to 'online' if not provided
+- action defaults to 'pending' if not provided
+- status defaults to 'active' if not provided
+- trackingId will be auto-generated if not provided (format: ORD-{timestamp}-{random})
+- description, customerEmail, customerPhone, and shippingAddress are optional
+- orderType must be: 'online', 'offline', 'phone', or 'email'
+- action must be: 'pending', 'processing', 'shipped', 'delivered', 'cancelled', or 'returned'
+- status must be: 'active', 'inactive', or 'completed'
+- orderTotal must be >= 0
+*/
+
 module.exports = mongoose.model('Order', orderSchema);
